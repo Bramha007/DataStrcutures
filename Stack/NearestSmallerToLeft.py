@@ -18,7 +18,38 @@ Expected time complexity is O(n). """
 
 
 def nearestSmallestToLeft(arr):
-    return arr
+    stack = []
+    op = []
+    for ele in arr:
+        if len(stack) == 0:
+            op.append(-1)
+        else :
+            while len(stack) != 0:
+                if stack[-1] < ele:
+                    op.append(stack[-1])
+                    break
+                else :
+                    stack.pop()
+            if not stack:
+                op.append(-1)
+        stack.append(ele)
+    return op
 
 
-print(nearestSmallestToLeft([1, 6, 4, 10, 2, 5]))
+test1 = {
+    'input': {
+        'arr': [1, 6, 4, 10, 2, 5]
+    },
+    'output': [-1, 1, 1, 4,  1, 2]
+}
+test2 = {
+    'input': {
+        'arr': [1, 3, 2, 4]
+    },
+    'output': [-1, 1, 1, 2]
+}
+
+
+print(nearestSmallestToLeft(**test2["input"]))
+
+
